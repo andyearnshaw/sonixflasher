@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" class="wa-theme-solarized-auto">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Sonix Keyboard Flasher</title>
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="Flash firmware for Sonix SN32-based keyboards directly from your browser">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sonix Flasher">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-beta.6/dist/styles/webawesome.css" />
+  <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-beta.6/dist/webawesome.loader.js"></script>
+  <style>
+    wa-callout {
+      display: none;
+    }
+
+    body.no-hid-support {
+      #authorize {
+        display: none;
+      }
+
+      wa-callout {
+        display: block;
+      }
+    }
+    </style>
+</head>
+
+<body>
+  <script>
+    if (!navigator.hid) {
+      document.body.classList.add('no-hid-support');
+    }
+  </script>
+  <header class="wa-split wa-surface">
+    <h1 title="Sonix Keyboard Flasher">
+      <img src="favicon.ico" alt="Sonix Keyboard Flasher logo" class="header-logo" />
+      <span class="header-title">Sonix Flasher</span>
+    </h1>
+    <div class="header-buttons">
+      <wa-dropdown id="theme-dropdown">
+        <wa-button slot="trigger" variant="neutral" appearance="plain">
+          <wa-icon label="Change theme" id="theme-icon" name="palette"></wa-icon>
+        </wa-button>
+
+        <wa-dropdown-item id="theme-auto" value="auto">
+          <wa-icon name="palette" slot="prefix"></wa-icon>
+          Auto
+        </wa-dropdown-item>
+        <wa-dropdown-item id="theme-light" value="light">
+          <wa-icon name="sun" slot="prefix"></wa-icon>
+          Light
+        </wa-dropdown-item>
+        <wa-dropdown-item id="theme-dark" value="dark">
+          <wa-icon name="moon" slot="prefix"></wa-icon>
+          Dark
+        </wa-dropdown-item>
+      </wa-dropdown>
+      <wa-button variant="neutral" appearance="plain" href="https://sonixflasher.github.io/">
+        <wa-icon label="Go to Github" name="github" family="brands"></wa-icon>
+      </wa-button>
+    </div>
+  </header>
+
+  <main id="wizard" class="screen:auth">
+    <!-- Start Screen -->
+    <section class="screen screen-auth">
+      <wa-button id="authorize" variant="primary" size="large">
+        <wa-icon name="usb" slot="prefix"></wa-icon>
+        Authorise USB Device Access
+      </wa-button>
+      <wa-callout variant="warning" appearance="filled">
+        <strong>WebHID is not supported in this browser</strong><br/>
+        You will not be able to flash your device with this tool.
+      </wa-callout>
+    </section>
+
+    <!-- File Selection Screen -->
+    <section class="screen screen-control">
+      <div class="container">
+        <div class="wa-split">
+          <wa-button id="back-to-auth-btn" appearance="plain">
+            <wa-icon name="arrow-left" slot="start"></wa-icon>
+            Change device
+          </wa-button>
+          <div id="device-name"></div>
+        </div>
+        <label for="file-input" class="file-input-label">
+          <wa-card id="drop-area" class="wa-card--bordered">
+            <wa-icon id="drop-area-icon" name="upload" style="font-size: 3rem"></wa-icon>
+            <p id="drop-area-text">Drop firmware file here or click to select</p>
+            <input id="file-input" type="file" style="display: none;" />
+          </wa-card>
+        </label>
+        <wa-button id="flash-btn" variant="primary" size="large" disabled>
+          <wa-icon name="flash" slot="prefix"></wa-icon>
+          Flash
+        </wa-button>
+      </div>
+    </section>
+
+    <!-- Flashing Progress Screen -->
+    <section class="screen screen-progress">
+      <div class="container">
+        <div class="wa-split">
+          <label id="progress-label" for="progress-bar">Not started</label>
+        </div>
+        <wa-progress-bar id="progress-bar" value="0"></wa-progress-bar>
+        <wa-button id="done-btn" variant="text" disabled>
+          Done
+        </wa-button>
+      </div>
+    </section>
+  </main>
+  <footer class="wa-surface">Flashing is performed at your own risk and no
+  liability is accepted.</footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

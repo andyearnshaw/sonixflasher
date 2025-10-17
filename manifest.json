@@ -1,0 +1,21 @@
+{
+  "name": "Sonix Keyboard Flasher",
+  "short_name": "Sonix Flasher",
+  "description": "Flash firmware for Sonix SN32-based keyboards directly from your browser",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "categories": ["utilities", "productivity", "developer"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon",
+      "purpose": "any"
+    }
+  ],
+  "prefer_related_applications": false
+}
