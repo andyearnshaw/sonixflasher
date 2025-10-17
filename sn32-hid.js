@@ -37,7 +37,7 @@ const pad = data => {
   return new Uint8Array([...data, ...padding]);
 }
 
-function hidSetFeatureReport(device, report, sendReportId = true) {
+function hidSetFeatureReport(device, report) {
   if (report.length > RESPONSE_LEN) {
     throw new Error(`Report must be less than ${RESPONSE_LEN} bytes`);
   }
@@ -45,11 +45,7 @@ function hidSetFeatureReport(device, report, sendReportId = true) {
   // Pad the report to 64 bytes as necessary
   report = pad(report);
 
-  if (sendReportId) {
-    return device.sendFeatureReport(0x00, report);
-  } else {
-    return device.sendReport(report.slice(0, 1), report.slice(1));
-  }
+  return device.sendFeatureReport(0x00, report);
 }
 
 async function hidGetFeatureReport(device) {
