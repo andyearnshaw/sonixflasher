@@ -4,7 +4,9 @@ This is the repository for a single page application capable of flashing the
 firmware of Sonix sn32-based keyboards. It's a port of the official [Sonix 
 Flasher][1] desktop application.
 
-The app itself is hosted at https://sonixflasher.github.io.
+The app itself is hosted at https://andyearnshaw.github.io/sonixflasher.
+
+[1]: https://github.com/SonixQMK/sonix-flasher
 
 ## Usage
 
@@ -23,7 +25,8 @@ flashed your keyboard, you probably have a keyboard shortcut to do this.
 5. Select the firmware file that you wish to flash
 6. Click flash and **wait for the process to end**
 
-[1]: https://github.com/SonixQMK/sonix-flasher
+Currently, the app only works in Chromium-based browsers (not Firefox or Safari)
+and only on desktop. It does not work on Android.
 
 ## Contributing
 
