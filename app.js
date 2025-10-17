@@ -57,8 +57,8 @@ function backToDeviceSelection(forget = false) {
 }
 
 function backToFirmwareSelection() {
-  dropArea.classList.remove('invalid', 'valid');
   wizard.className = 'screen:control';
+  doneButton.disabled = true;
 
   if (!selectedDevice) {
     backToDeviceSelection();

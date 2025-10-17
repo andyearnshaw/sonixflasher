@@ -104,6 +104,7 @@ wa-callout {
 
   &.valid {
     border-color: var(--solarized-green);
+    border-style: solid;
     color: var(--solarized-green);
   }
 

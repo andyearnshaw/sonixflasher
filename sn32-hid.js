@@ -90,7 +90,7 @@ const unpack = (data) => {
 export async function* flashDevice(device, firmware, qmkOffset) {
   const format = (data) => `0x${data.toString(16).padStart(8, "0")}`;
 
-  if (firmware.length > firmwareSizeLimits[device.productId]) {
+  if (firmware.length + qmkOffset > firmwareSizeLimits[device.productId]) {
     throw new Error(`Firmware size exceeds maximum of ${firmwareSizeLimits[device.productId]} bytes`);
   }
 
